@@ -50,23 +50,23 @@ function SupplierTypeList(props) {
       <Row>
         <Col span={6}></Col>
         <Col span={12}>
-     <List
-    itemLayout="horizontal"
-    dataSource={data}
-    renderItem={item => (
-      <List.Item
-        actions={[<Link title={item.title} style={{"font-size": "15px"}} key="list-loadmore-edit">入驻</Link>]}
-      >
-        <List.Item.Meta
-          avatar={<Avatar size={50} src={`${item.image}`} />}
-          title={<a href="https://ant.design">{item.title}</a>}
-          description={item.description}
-        />
-      </List.Item>
-    )}
-  />
-  </Col>
-  <Col span={6}></Col>
+          <List
+          itemLayout="horizontal"
+          dataSource={data}
+          renderItem={item => (
+            <List.Item
+              actions={[<Link title={item.title} style={{"font-size": "15px"}} key="list-loadmore-edit">入驻</Link>]}
+            >
+              <List.Item.Meta
+                avatar={<Avatar size={50} src={`${item.image}`} />}
+                title={<a href="https://ant.design">{item.title}</a>}
+                description={item.description}
+              />
+            </List.Item>
+          )}
+      />
+    </Col>
+    <Col span={6}></Col>
   </Row>
     </div>
   );
