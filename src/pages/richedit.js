@@ -1,20 +1,29 @@
-import React, { useState,useMemo } from "react";
+import React, { useState,useMemo,useRef } from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 const container=[
-  [{'header': [3, 4, 5, 6, false]}],
-  ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code'],
-  [{color: []}, {background: []}],
-  [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+  
+  [{ size: [] }],
+  ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+  [{ list: 'ordered' }, { list: 'bullet' }],
   ['link', 'image'],
-  ['clean']
+  ['clean'],
+  ['code-block']
 ]
 
-function selectLocalImage() {
+
+
+
+
+
+function selectLocalImage(param,quillRef) {
+  console.log("selectLocalImage", param,quillRef)
   const input = document.createElement('input');
   input.setAttribute('type', 'file');
   input.click();
+
+
 
   // Listen upload local image and save to server
   input.onchange = () => {
@@ -23,6 +32,12 @@ function selectLocalImage() {
     // file type is only image.
     if (/^image\//.test(file.type)) {
       //saveToServer(file);
+      const quillEditor = quillRef.current.getEditor()
+      const range = quillEditor.getSelection(true);
+      quillEditor.insertEmbed(range.index, 'image', `https://demo.doublechaintech.com/demodata/imageManager/loadImage/drink0000/400/300/red/`);
+
+
+
       console.log("File", file.type)
     } else {
       console.warn('You could only upload images.');
@@ -30,27 +45,24 @@ function selectLocalImage() {
   };
 }
 
-function MyComponent() {
+
+
+function RichEditor(props) {
   const [value, setValue] = useState('');
+  const quillRef = useRef(null);
   const modules = useMemo(() => ({
     toolbar: {
-      container: [
-        [{ header: [1, 2, false] }],
-        ['bold', 'italic', 'underline'],
-        [{ list: 'ordered' }, { list: 'bullet' }],
-        ['image', 'code-block']
-      ],
-      handlers: {
-        image: selectLocalImage
-      }
+      container: container,
+      handlers: {image: (value)=>selectLocalImage(value,quillRef)}
     }
   }), [])
 
+  
 
 
   return (
-    <ReactQuill modules={modules} theme="snow" value={value} onChange={setValue}/>
+    <ReactQuill ref={quillRef} style={{minHeight:"100px",height:"600px",}} modules={modules} theme="snow" value={value} onChange={setValue}/>
   );
 }
 
-export default MyComponent
+export default RichEditor
