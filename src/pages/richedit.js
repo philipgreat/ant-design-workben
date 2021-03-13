@@ -1,6 +1,13 @@
 import React, { useState,useMemo,useRef } from "react";
-import ReactQuill from 'react-quill';
+import ReactQuill,{ Quill }  from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import ImageService from '../services/ImageService'
+import {ImageDrop} from 'quill-image-drop-module'
+import ImageResize from '@taoqf/quill-image-resize-module'
+
+Quill.register('modules/imageResize', ImageResize)
+
+
 
 const container=[
   
@@ -34,11 +41,31 @@ function selectLocalImage(param,quillRef) {
       //saveToServer(file);
       const quillEditor = quillRef.current.getEditor()
       const range = quillEditor.getSelection(true);
-      quillEditor.insertEmbed(range.index, 'image', `https://demo.doublechaintech.com/demodata/imageManager/loadImage/drink0000/400/300/red/`);
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      //reference https://quilljs.com/docs/api/
+
+      reader.onload = () =>{
+        const {uploadOneImage} = ImageService
+        const image ={name:"noname", mimeType:file.type, encodeContent: reader.result}
+        quillEditor.insertText(range.index, '正在上传.....', 'bold', true);
+        quillEditor.disable()
+        uploadOneImage({...image}).then((response)=>{
+          if(!response.class || response.class.indexOf("ChangeRequest")<0){
+            alert("图片上传失败")
+            return
+          }
+          const imageId = response.imageUploadStepList[0].name
+          quillEditor.deleteText(range.index, '正在上传.....'.length);
+          quillEditor.insertEmbed(range.index, 'image', `http://localhost:8080/teachain/changeRequestService/fetchImage/${imageId}/`);
+          quillEditor.enable(true)
+        })
 
 
-
+      }
       console.log("File", file.type)
+
     } else {
       console.warn('You could only upload images.');
     }
@@ -46,11 +73,12 @@ function selectLocalImage(param,quillRef) {
 }
 
 
-
 function RichEditor(props) {
   const [value, setValue] = useState('');
   const quillRef = useRef(null);
   const modules = useMemo(() => ({
+    imageResize: {
+    },
     toolbar: {
       container: container,
       handlers: {image: (value)=>selectLocalImage(value,quillRef)}

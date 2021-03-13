@@ -1,0 +1,35 @@
+{
+  "class": "com.doublechaintech.freshchain.changerequest.ChangeRequest",
+  "displayName": "仓库",
+  "messageList": [],
+  "id": "CR000082",
+  "name": "仓库",
+  "createTime": 1615548091886,
+  "remoteIp": "118.112.75.64",
+  "requestType": {
+    "class": "com.doublechaintech.freshchain.changerequesttype.ChangeRequestType",
+    "messageList": [],
+    "id": "STOCK_CHECKIN",
+    "displayOrder": 0,
+    "version": 29
+  },
+  "platform": {
+    "class": "com.doublechaintech.freshchain.platform.Platform",
+    "messageList": [],
+    "id": "P000001",
+    "version": 2147483647
+  },
+  "version": 1,
+  "merchantEventCreateList": [{
+    "name": "2131",
+    "changeRequest": {
+      "id": "CR000036",
+      "version": 29
+    },
+    "merchant": {
+      "id": "M004112",
+      "version": 29
+    }
+  }]
+}
+

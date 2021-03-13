@@ -1,6 +1,24 @@
 // ref: https://umijs.org/config/
 export default {
   treeShaking: true,
+  chainWebpack(config, { webpack }) {
+    // 设置 alias
+    
+
+    
+    config.plugin('provide').use(webpack.ProvidePlugin, [{
+      'window.Quill': 'quill'
+    }])
+    config.plugin('provide').use(
+      require('webpack').ProvidePlugin,
+      [
+        {
+          'window.Quill': 'quill'
+        }
+      ]
+    )
+
+  },
   routes: [
     {
       path: '/y',
@@ -35,8 +53,12 @@ export default {
       component: './richedit',
     },
   ],
+
+
+
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
+    
     [
       'umi-plugin-react',
       {
