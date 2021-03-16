@@ -58,7 +58,7 @@ function selectLocalImage(param,quillRef) {
           }
           const imageId = response.imageUploadStepList[0].name
           quillEditor.deleteText(range.index, '正在上传.....'.length);
-          quillEditor.insertEmbed(range.index, 'image', `http://localhost:8080/teachain/changeRequestService/fetchImage/${imageId}/`);
+          quillEditor.insertEmbed(range.index, 'image', `https://demo.doublechaintech.com/teachain/changeRequestService/fetchImage/${imageId}/`);
           quillEditor.enable(true)
         })
 
