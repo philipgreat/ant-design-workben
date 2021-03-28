@@ -1,10 +1,10 @@
 import { Input, Select, Button,Drawer } from 'antd';
 import React from 'react'
-import RichEdit from '../RichEdit'
+import HTMLEditor from '../HTMLEditor'
 const { Option } = Select;
 
 export default class RichEditInput extends React.Component {
-  state = { drawerVisible: false };
+  state = { drawerVisible: true };
   handleNumberChange = e => {
     const number = parseInt(e.target.value || 0, 10);
     if (isNaN(number)) {
@@ -34,6 +34,7 @@ export default class RichEditInput extends React.Component {
   };
 
   onClose = () => {
+    console.log("onClose triggered")
     this.setState({
       drawerVisible: false,
     });
@@ -52,11 +53,11 @@ export default class RichEditInput extends React.Component {
           placement="right"
           closable={true}
           onClose={this.onClose}
-          drawer={this.state.drawerVisible}
-          onClick={this.showDrawer}
+          visible={this.state.drawerVisible}
+          
           width={720}
         >
-          <RichEdit />
+          <HTMLEditor />
         </Drawer>
       </div>
     );
