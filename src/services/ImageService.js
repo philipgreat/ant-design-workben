@@ -2,7 +2,7 @@
 import { postForm } from './http'
 
 
-const PREFIX = "https://demo.doublechaintech.com/teachain/"
+const PREFIX = "http://localhost:8080/teachain/"
 const uploadOneImage = (parameters) => {
   const url = `${PREFIX}changeRequestService/uploadOneImage/name/mimeType/encodeContent/`
   const requestParameters = {...parameters}

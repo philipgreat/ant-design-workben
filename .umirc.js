@@ -1,31 +1,28 @@
 // ref: https://umijs.org/config/
 export default {
   treeShaking: true,
+
   chainWebpack(config, { webpack }) {
     // 设置 alias
-    
-
-    
-    config.plugin('provide').use(webpack.ProvidePlugin, [{
-      'window.Quill': 'quill'
-    }])
-    config.plugin('provide').use(
-      require('webpack').ProvidePlugin,
-      [
-        {
-          'window.Quill': 'quill'
-        }
-      ]
-    )
-
+    config.plugin('provide').use(webpack.ProvidePlugin, [
+      {
+        'window.Quill': 'quill',
+      },
+    ]);
+    config.plugin('provide').use(require('webpack').ProvidePlugin, [
+      {
+        'window.Quill': 'quill',
+      },
+    ]);
   },
+
   routes: [
     {
       path: '/y',
       component: '../layouts/index',
       routes: [
         {
-          path: '/',
+          path: '/yy',
           component: '../pages/index',
         },
         {
@@ -49,16 +46,20 @@ export default {
       ],
     },
     {
+      path: '/richeditform',
+      component: './richeditform',
+    },
+    {
       path: '/richedit',
       component: './richedit',
     },
+    {
+      path: '/imageupload',
+      component: './imageupload',
+    },
   ],
-
-
-
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
-    
     [
       'umi-plugin-react',
       {

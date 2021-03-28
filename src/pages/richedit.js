@@ -52,16 +52,21 @@ function selectLocalImage(param,quillRef) {
         quillEditor.insertText(range.index, '正在上传.....', 'bold', true);
         quillEditor.disable()
         uploadOneImage({...image}).then((response)=>{
-          if(!response.class || response.class.indexOf("ChangeRequest")<0){
-            alert("图片上传失败")
+          if(!response.class){
+            alert("图片上传失败(response.class)!")
             return
           }
-          const imageId = response.imageUploadStepList[0].name
+          if(!response.class.indexOf("ImageUploadResponse")<0){
+            alert("图片上传失败!-ImageUploadResponse")
+            return
+          }
+          const imageId = response.remoteUrl;
+          
           quillEditor.deleteText(range.index, '正在上传.....'.length);
-          quillEditor.insertEmbed(range.index, 'image', `https://demo.doublechaintech.com/teachain/changeRequestService/fetchImage/${imageId}/`);
+          quillEditor.insertEmbed(range.index, 'image', `${imageId}`);
           quillEditor.enable(true)
         })
-
+        
 
       }
       console.log("File", file.type)

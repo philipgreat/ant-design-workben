@@ -1,0 +1,63 @@
+<html>
+<style>
+svg {
+  width: 70px;
+  height: 70px;
+}
+svg:hover {
+  fill: red;
+}
+
+
+.icon {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+  }
+  .icon-bike {
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/icon-bike-black.svg);
+  }
+  .icon-bike:hover,
+    .icon-bike:focus {
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+    }
+
+    .icon-bike1 {
+    background-image: url(./icons/1053825_71245.svg);
+  }
+  .icon-bike1:hover,
+    .icon-bike:focus {
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+    }
+
+  .icon-bike2 {
+    background-image: url(./icons/1053826_71245.svg);
+  }
+  .icon-bike2:hover,
+    .icon-bike:focus {
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+    }
+
+
+body {
+  display: grid;
+  height: 100vh;
+  margin: 0;
+  place-items: center center;
+}
+
+
+</style>
+<body>
+    <div>
+        <svg width="100" height="100">       
+            <image xlink:href="./icons/1053825_71245.svg" style="color:red" width="80" height="80"/>    
+       </svg>
+        <span class="icon icon-bike1"></span>
+        <span class="icon icon-bike2"></span>
+        <svg viewBox="0 0 100 100" class="icon shape-codepen">
+            <use xlink:href="./icons/1053825_71245.svg"></use>
+          </svg>
+</body>
+</html>
