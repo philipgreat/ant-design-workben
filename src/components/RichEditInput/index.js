@@ -43,7 +43,7 @@ export default class RichEditInput extends React.Component {
     const { size, value } = this.props;
     return (
       <div>
-        <div style={{width:"600px", height:"200px", border:"solid 1px blue"}}
+        <div style={{width:"600px", height:"200px", border:"solid 1px blue",padding:"10px"}}
           dangerouslySetInnerHTML={{
             __html: value.htmlText
           }}></div>
