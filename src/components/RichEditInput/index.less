@@ -43,3 +43,49 @@
     object-fit: contain;
   }
 }
+
+.richEditInput {
+  display: flex;
+  flex-direction: column;
+
+  .contentPreview {
+    position: relative;
+    width: 600px;
+    min-height: 20px;
+    max-height: 200px;
+    overflow-x: scroll;
+    //overflow-y: hidden;
+    border: solid 1px #999;
+    padding: 10px;
+
+    .contentEditButton {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: fit-content;
+    }
+  }
+
+}
+
+
+.popupDrawer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 700px;
+  z-index: 99999;
+}
+
+.popupDrawerActionList {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  width: 100%;
+
+  :global .ant-btn {
+    margin-right: 10px;
+  }
+}
