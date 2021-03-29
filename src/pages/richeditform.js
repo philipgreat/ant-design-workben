@@ -34,7 +34,7 @@ class RichEditTestForm extends React.Component {
 
         <Form.Item label='Price'>
           {getFieldDecorator('content', {
-            initialValue: '<div>hello</div>',
+            initialValue: '<p>1111</p><p><br></p><p>222</p>',
             rules: [{ validator: this.checkContent }],
           })(<RichEditInput />)}
         </Form.Item>

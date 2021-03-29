@@ -49,7 +49,9 @@ function RichEditInput(props) {
   return (
     <div className={styles.richEditInput}>
       <div className={styles.contentPreview}>
-        <div dangerouslySetInnerHTML={{ __html: value }} />
+        <div className={styles.contentPreviewTxt} >
+          <div dangerouslySetInnerHTML={{ __html: value }} />
+        </div>
         <Button className={styles.contentEditButton} type='dashed' icon='edit' onClick={showDrawer}>编辑</Button>
       </div>
 
