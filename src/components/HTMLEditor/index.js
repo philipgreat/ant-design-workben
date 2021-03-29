@@ -79,7 +79,7 @@ function selectLocalImage(param,quillRef) {
 
 
 function RichEditor(props) {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState('<div>hello</div>');
   const quillRef = useRef(null);
   const modules = useMemo(() => ({
     imageResize: {
