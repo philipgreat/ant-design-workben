@@ -1,16 +1,15 @@
-
 import styles from './richeditform.css';
 
-import React from 'react'
-import { Form, Input, Select, Button } from 'antd';
-import RichEditInput from '../components/RichEditInput'
+import React from 'react';
+import { Button, Form } from 'antd';
+import RichEditInput from '../components/RichEditInput';
 
 class RichEditTestForm extends React.Component {
   handleSubmit = e => {
-   
+
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
-      console.log("handling submit", err, values)
+      console.log('handling submit', err, values);
       if (!err) {
         console.log('Received values of form: ', values);
       }
@@ -26,20 +25,22 @@ class RichEditTestForm extends React.Component {
     callback('Price must greater than zero!');*/
     return callback();
   };
-  
+
 
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form layout="inline" onSubmit={this.handleSubmit}>
-        <Form.Item label="Price">
+      <Form onSubmit={this.handleSubmit}>
+
+        <Form.Item label='Price'>
           {getFieldDecorator('content', {
-            initialValue: { htmlText: '<div>hello</div>', size: 100 },
+            initialValue: '<p>1111</p><p><br></p><p>222</p>',
             rules: [{ validator: this.checkContent }],
           })(<RichEditInput />)}
         </Form.Item>
+
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type='primary' htmlType='submit'>
             Submit
           </Button>
         </Form.Item>

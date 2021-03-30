@@ -1,6 +1,7 @@
 // ref: https://umijs.org/config/
 export default {
   treeShaking: true,
+  publicPath: './',
 
   chainWebpack(config, { webpack }) {
     // 设置 alias
@@ -56,6 +57,10 @@ export default {
     {
       path: '/imageupload',
       component: './imageupload',
+    },
+    {
+      path: '/remotehtml',
+      component: './remotehtml',
     },
   ],
   plugins: [

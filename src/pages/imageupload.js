@@ -18,19 +18,16 @@ const Demo = () => {
     console.log('Success:', values);
   };
   const formRef = React.createRef()
-  const onSubmit = (values) => {
-    console.log('Success:', values);
-    return false
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = e => {
 
-    console.log("p ",formRef.current)
-    
-   
-  };
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      console.log('handling submit', err, values);
+      if (!err) {
+        console.log('Received values of form: ', values);
+      }
+
+    });
   };
   
   return (
@@ -41,7 +38,7 @@ const Demo = () => {
       //onFinish={onFinish}
       //onFinishFailed={onFinishFailed}
       ref={formRef}
-      onSubmit={(event)=>handleSubmit(event)}
+      onSubmit={handleSubmit}
     >
       
 
@@ -63,11 +60,12 @@ const Demo = () => {
     </Form>
   );
 };
+const WrappedDemoForm= Form.create({ name: 'customized_form_controls' })(Demo);
 
 export default function() {
   return (
     <div style={{width:"400px"}}>
-      <Demo/>
+      <WrappedDemoForm/>
     </div>
   );
 }
