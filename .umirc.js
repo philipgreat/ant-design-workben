@@ -62,6 +62,10 @@ export default {
       path: '/remotehtml',
       component: './remotehtml',
     },
+    {
+      path: '/smalltextform',
+      component: './smalltextform',
+    },
   ],
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html

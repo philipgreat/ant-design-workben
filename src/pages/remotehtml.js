@@ -12,7 +12,7 @@ export default function() {
 
   return (
     <div >
-      <RemoteHTML>content</RemoteHTML>
+      <RemoteHTML url="localhost:8080/teachain/secUserManager/accessUserApp/UA000004/" >content</RemoteHTML>
     </div>
   );
 }

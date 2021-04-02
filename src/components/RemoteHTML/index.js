@@ -6,13 +6,17 @@ import useFetch from 'use-http'
 //https://use-http.com/#/?id=options
 export default function RemoteHTML(props) {
 
+  const {url}=props
+  //const url = "localhost:8080/teachain/secUserManager/accessUserApp/UA000004/";
+  
   const options = {headers: {
     'user-agent': 'Mozilla/4.0 MDN Example',
     'content-type': 'text/html',
     'Accept':"text/html"
   },}
   const [content, setContent] = useState('')
-  const { get, post, response, loading, error } = useFetch('http://localhost:8080/teachain',
+  //
+  const { get, post, response, loading, error } = useFetch('//',
     globalOptions => {
       delete globalOptions.headers.Accept
       return {...globalOptions,headers:{'Accept':"text/html"},credentials: "include"}
@@ -22,7 +26,7 @@ export default function RemoteHTML(props) {
   async function initializeContent() {
     //const login = await get('/secUserManager/login/SU000002/admin123/')
     //if (response.ok) setContent(login)
-    const content = await get('/secUserManager/accessUserApp/UA000004/')
+    const content = await get(url)
     if (response.ok) setContent(content)
   }
   const refresh=()=>{
@@ -40,3 +44,4 @@ export default function RemoteHTML(props) {
           <div dangerouslySetInnerHTML={{ __html: content }} />
     </div>)
 }
+
