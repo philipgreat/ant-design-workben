@@ -17,7 +17,7 @@ const calcStyle=({value, minLength, maxLength})=>{
 const calcTips=({value, minLength, maxLength})=>{
 
   if(value.length<minLength&&value.length===0){
-    return <span className={calcStyle({value, minLength, maxLength})}>这是必填字段，需要{minLength-value.length}字</span>
+    return <span className={calcStyle({value, minLength, maxLength})}>这是必填字段，需要{minLength}-{maxLength}字</span>
   }
   if(value.length<minLength){
       return <span className={calcStyle({value, minLength, maxLength})}>输入太短了，还需要{minLength-value.length}字</span>
