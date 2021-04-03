@@ -39,6 +39,12 @@ class SmallTextInputTestForm extends React.Component {
             rules: [{ validator: this.checkContent }],
           })(<SmallTextInput minLength={10} maxLength={20}/>)}
         </Form.Item>
+        <Form.Item label='Text'>
+          {getFieldDecorator('content2', {
+            initialValue: '',
+            rules: [{ validator: this.checkContent }],
+          })(<SmallTextInput minLength={0} maxLength={20}/>)}
+        </Form.Item>
         
         <Form.Item>
           <Button type='primary' htmlType='submit'>
