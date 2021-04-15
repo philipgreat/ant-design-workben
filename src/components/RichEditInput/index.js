@@ -50,7 +50,7 @@ function RichEditInput(props) {
     <div className={styles.richEditInput}>
       <div className={styles.contentPreview}>
         <div className={styles.contentPreviewTxt} >
-          <div dangerouslySetInnerHTML={{ __html: value }} />
+          <div style={{minHeight:"40px"}}dangerouslySetInnerHTML={{ __html: value }} />
         </div>
         <Button className={styles.contentEditButton} type='dashed' icon='edit' onClick={showDrawer}>编辑</Button>
       </div>

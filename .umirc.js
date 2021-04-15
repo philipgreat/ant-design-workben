@@ -2,6 +2,7 @@
 export default {
   treeShaking: true,
   publicPath: './',
+  exportStatic: {},
 
   chainWebpack(config, { webpack }) {
     // 设置 alias
@@ -65,6 +66,18 @@ export default {
     {
       path: '/smalltextform',
       component: './smalltextform',
+    },
+    {
+      path: '/resultpage',
+      component: './resultpage',
+    },
+    {
+      path: '/reacthookform',
+      component: './reacthookform',
+    },
+    {
+      path: '/materialhookform',
+      component: './materialhookform',
     },
   ],
   plugins: [

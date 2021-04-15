@@ -2,8 +2,9 @@
 import styles from './smalltextform.css';
 
 import React from 'react';
-import { Button, Form } from 'antd';
+import { Button, Form,Input,Row,Col } from 'antd';
 import SmallTextInput from '../components/SmallTextInput';
+import QRURLInput from '../components/QRURLInput';
 
 class SmallTextInputTestForm extends React.Component {
   handleSubmit = e => {
@@ -27,23 +28,20 @@ class SmallTextInputTestForm extends React.Component {
     return callback();
   };
 
+  foo=()=>{
+
+  }
 
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
       <Form onSubmit={this.handleSubmit}>
 
-        <Form.Item label='Text'>
-          {getFieldDecorator('content', {
+<Form.Item label='Text'>
+          {getFieldDecorator('content3', {
             initialValue: '',
-            rules: [{ validator: this.checkContent }],
-          })(<SmallTextInput minLength={10} maxLength={20}/>)}
-        </Form.Item>
-        <Form.Item label='Text'>
-          {getFieldDecorator('content2', {
-            initialValue: '',
-            rules: [{ validator: this.checkContent }],
-          })(<SmallTextInput minLength={0} maxLength={20}/>)}
+            rules: [],
+          })(<QRURLInput  style={{"imeMode":"disabled"}} minLength={0} maxLength={20} onPressEnter={()=>this.foo()}/>)}
         </Form.Item>
         
         <Form.Item>
@@ -63,7 +61,37 @@ const WrappedSmallTextInputTestForm= Form.create({ name: 'customized_form_contro
 export default function() {
   return (
     <div className={styles.normal}>
+      <Row><Col span={6}></Col>
+      <Col span={12}>
       <WrappedSmallTextInputTestForm></WrappedSmallTextInputTestForm>
+      </Col>
+      <Col span={6}></Col>
+      </Row>
     </div>
   );
 }
+/*
+
+<Form.Item label='Text'>
+          {getFieldDecorator('content', {
+            initialValue: '',
+            rules: [],
+          })(<SmallTextInput minLength={10} maxLength={20}/>)}
+        </Form.Item>
+        <Form.Item label='Text'>
+          {getFieldDecorator('content2', {
+            initialValue: '',
+            rules: [],
+          })(<SmallTextInput minLength={0} maxLength={20}/>)}
+        </Form.Item>
+
+        <Form.Item label='Text'>
+          {getFieldDecorator('content3', {
+            initialValue: '',
+            rules: [],
+          })(<QRURLInput  style={{"imeMode":"disabled"}} minLength={0} maxLength={20}/>)}
+        </Form.Item>
+
+
+
+*/

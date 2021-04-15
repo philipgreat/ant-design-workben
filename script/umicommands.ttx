@@ -1,2 +1,6 @@
 umi generate page imageupload
 umi generate page richeditform
+
+umi generate component SmallTextInput
+
+umi generate page smalltextform
