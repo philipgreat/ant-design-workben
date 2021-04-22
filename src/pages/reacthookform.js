@@ -9,14 +9,14 @@ function App() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = data => console.log("data",data,"err",errors);
   console.log(errors);
-  
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input type="text" placeholder="First name"  size={80} {...register("name",{ maxLength: { value: 2, message: "error message" } })} />
-      
-      
+      <input type="text"   size={80} {...register("name",{ maxLength: { value: 2, message: "error message" } })} />
+      <input type="submit"/>
     </form>
   );
+
 }
 
 export default function() {

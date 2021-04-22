@@ -1,22 +1,30 @@
-import { Input, Select,Tooltip,message } from 'antd';
+import { Input, Select,Tooltip,message,Button } from 'antd';
 import React from 'react'
 import styles from './index.less';
 const { Option } = Select;
 
 
 export default class QRURLInput extends React.Component {
+  /*
+  constructor(props) {
+    super(props);
 
+    
+    this.state = {
+      previewVisible: false,
+      previewImage: value,
+      fileList: [],
+      url: value,
+      token: {},
+    };
+  }*/
 
   constructor(props) {
     super(props);
     this.scanInput = React.createRef();
   }
 
-  componentDidMount(){
-    this.scanInput.current.value=""
-
-  }
-
+  
   handleKeyDown = e => {
     
     const charCode=e.charCode? e.charCode : e.keyCode
@@ -26,7 +34,9 @@ export default class QRURLInput extends React.Component {
       message.error('请使用扫码枪之前，请切换为英文输入法，然后重新扫码');
     }
 
-    
+    if(charCode===13||charCode===10){
+      this.handleScanDone(e)
+    }
 
   };
 
@@ -48,19 +58,13 @@ export default class QRURLInput extends React.Component {
   handleScanDone=(e)=>{
     
     const { onChange, value,onPressEnter } = this.props;
-    //const scanFormInput = this.scanInput.current
-    const changedValue = e.target.value;
+    const scanFormInput = this.scanInput.current
+    const changedValue = scanFormInput.value;
     if(onPressEnter&&onChange&&this.scanInput){
       onChange(changedValue);
       onPressEnter(e);
       console.log("this.scanInput.current",this.scanInput.current)
-      if(this.scanInput.current.handleReset){
-        this.scanInput.current.handleReset();
-
-      }
-      
-
-
+      scanFormInput.value=""
       return
     }
     
@@ -76,6 +80,7 @@ export default class QRURLInput extends React.Component {
 
     return (
       <div>
+        <span>
         <Input
           type="text"
           size={size}
@@ -87,19 +92,23 @@ export default class QRURLInput extends React.Component {
           style={{"display":"none"}}
           {...this.props}
         />
-        <Input
+        <input
           name="__scan_qr__"
           type="text"
          
           size={70}
           autoComplete={"off"}
-          style={{imeMode:"disabled",msImeMode:"disabled"}}
-          onPressEnter={this.handleScanDone}
+          style={{imeMode:"disabled",msImeMode:"disabled",height:"30px",paddingLeft:"10px"}}
+          
           onKeyDown={this.handleKeyDown}
           ref={this.scanInput}
           
         />
-       <span>提示：请切换到英文输入法</span>
+         
+
+        </span>
+        <span style={{padding:"10px"}}>提示：请切换到英文输入法</span>
+        <Button type="primary" onClick={this.handleScanDone}>手动增加</Button> 
         </div>
        
     );

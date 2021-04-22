@@ -84,6 +84,7 @@ export default function RichEditor(props) {
     },
   }), []);
 
+  const finalValue = value || ''
 
   return (
     <ReactQuill
@@ -91,7 +92,7 @@ export default function RichEditor(props) {
       style={{ minHeight: '300px', height: '400px' }}
       modules={modules}
       theme='snow'
-      value={value}
+      value={finalValue}
       onChange={onChange} />
   );
 }

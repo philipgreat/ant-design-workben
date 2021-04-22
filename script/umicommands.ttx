@@ -4,3 +4,6 @@ umi generate page richeditform
 umi generate component SmallTextInput
 
 umi generate page smalltextform
+
+
+umi generate page materialhookform

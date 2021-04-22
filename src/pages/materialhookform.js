@@ -1,6 +1,6 @@
 
 import styles from './materialhookform.css';
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField, Select, MenuItem } from "@material-ui/core";
 import { useForm, Controller } from "react-hook-form";
 
@@ -11,7 +11,10 @@ const defaultValues = {
 
 function App() {
   const { register, handleSubmit, reset, watch, control } = useForm({ defaultValues });
-  const onSubmit = data => console.log(data);
+  const [log, setLog] = useState('1221')
+  const onSubmit = data =>{ 
+    console.log(data); 
+    setLog(data)};
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -38,6 +41,7 @@ function App() {
 
       <button type="button" onClick={() => reset({ defaultValues })}>Reset</button>
       <input type="submit" />
+      <pre>{JSON.stringify(log)}</pre>
     </form>
   );
 }
